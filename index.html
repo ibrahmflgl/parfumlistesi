@@ -80,15 +80,13 @@
     #searchInput:focus { border-color: var(--gold); }
     .count-badge { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; white-space: nowrap; }
     .count-badge span { color: var(--gold); font-weight: 500; }
-    
-    /* Responsive Table Container */
+
     .table-wrap {
       max-width: 980px; margin: 0 auto;
       border: 1px solid var(--border); 
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
     }
-    table { width: 100%; border-collapse: collapse; min-width: 550px; }
+    table { width: 100%; border-collapse: collapse; }
     
     thead tr { background: var(--surface); border-bottom: 1px solid var(--border-light); }
     thead th {
@@ -96,23 +94,21 @@
       letter-spacing: 0.25em; text-transform: uppercase;
       color: var(--gold); padding: 13px 14px; text-align: left;
     }
-    thead th:first-child  { width: 44px;  text-align: center; }
-    thead th:nth-child(2) { width: 76px;  text-align: center; }
-    thead th:nth-child(4) { width: 90px;  text-align: center; }
-    thead th:last-child   { width: 108px; text-align: center; }
+    thead th:first-child  { width: 70px; text-align: center; }
+    thead th:last-child   { width: 90px; text-align: right; padding-right: 20px; }
+    
     tbody tr {
       border-bottom: 1px solid var(--border);
       transition: background 0.15s;
+      cursor: pointer;
     }
     tbody tr:nth-child(even) { background: var(--stripe); }
     tbody tr:hover { background: var(--hover-bg); }
     tbody tr:last-child { border-bottom: none; }
+    
     td { padding: 8px 14px; vertical-align: middle; }
-    td:first-child {
-      text-align: center; color: var(--muted);
-      font-size: 0.72rem; letter-spacing: 0.05em; width: 44px;
-    }
-    td.img-cell { width: 76px; text-align: center; padding: 5px 8px; }
+    td:first-child { width: 70px; text-align: center; padding: 5px 8px; }
+    
     .perf-img-wrap {
       width: 50px; height: 66px;
       margin: 0 auto;
@@ -147,25 +143,14 @@
     }
     .price {
       color: var(--gold);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      text-align: center;
+      text-align: right;
       letter-spacing: 0.05em;
       white-space: nowrap;
     }
-    td:last-child { text-align: center; width: 108px; }
-    .link-btn {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 5px 11px;
-      font-size: 0.67rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--gold); text-decoration: none;
-      border: 1px solid var(--gold);
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .link-btn:hover { background: var(--gold); color: var(--bg); }
-    .no-link { font-size: 0.7rem; color: var(--border-light); }
+    td:last-child { text-align: right; width: 90px; padding-right: 20px; }
+    
     .no-results {
       text-align: center; padding: 48px 20px;
       color: var(--muted); font-size: 0.9rem; display: none;
@@ -175,23 +160,18 @@
       display: flex; align-items: center; justify-content: space-between; padding: 0 4px;
     }
     .footer p { font-size: 0.7rem; color: var(--border-light); letter-spacing: 0.1em; }
-    .corrected-badge {
-      font-size: 0.65rem; color: var(--gold);
-      border: 1px solid var(--gold); padding: 2px 8px;
-      letter-spacing: 0.1em; text-transform: uppercase;
-    }
 
-    /* Mobile Adjustments */
     @media(max-width:600px) {
       body { padding: 24px 10px; }
       .header h1 { font-size: 2rem; }
-      td { padding: 6px; }
+      td { padding: 8px 6px; }
       th { padding: 10px 6px; font-size: 0.55rem; }
-      .perf-img-wrap { width: 40px; height: 50px; }
-      .name { font-size: 0.9rem; }
-      .brand { font-size: 0.6rem; }
-      .price { font-size: 0.8rem; }
-      .link-btn { padding: 4px 6px; font-size: 0.6rem; gap: 4px; }
+      .perf-img-wrap { width: 45px; height: 58px; }
+      .name { font-size: 0.95rem; }
+      .brand { font-size: 0.65rem; }
+      .price { font-size: 0.85rem; }
+      td:last-child { padding-right: 12px; }
+      thead th:last-child { padding-right: 12px; }
     }
   </style>
 </head>
@@ -218,11 +198,9 @@
     <table>
       <thead>
         <tr>
-          <th>#</th>
           <th>Resim</th>
           <th>Marka &amp; Parfüm</th>
           <th>Fiyat 50ml</th>
-          <th>Fragrantica</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -232,7 +210,6 @@
 
   <footer class="footer">
     <p>© 2025 Parfüm Koleksiyonu</p>
-    <span class="corrected-badge">Linkler güncellendi</span>
   </footer>
 
   <script>
@@ -243,60 +220,59 @@
     }
 
     var perfumes = [
-      { no: 1,  brand: "Giorgio Armani",     name: "My Way",                          price: "650 TL", link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-62036.html" },
-      { no: 2,  brand: "Giorgio Armani",     name: "My Way Ylang",                    price: "650 TL", link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-Ylang-100877.html" },
-      { no: 3,  brand: "Giorgio Armani",     name: "Si",                              price: "650 TL", link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Si-18453.html" },
-      { no: 4,  brand: "Atkinsons",          name: "Shine Despite Everything",        price: "650 TL", link: "https://www.fragrantica.com/perfume/Atkinsons/Shine-Despite-Everything-97366.html" },
-      { no: 5,  brand: "BDK Parfums",        name: "Impadia",                         price: "650 TL", link: "https://www.fragrantica.com/perfume/BDK-Parfums/Impadia-104764.html" },
-      { no: 6,  brand: "Burberry",           name: "Goddess",                         price: "650 TL", link: "https://www.fragrantica.com/perfume/Burberry/Goddess-83483.html" },
-      { no: 7,  brand: "Burberry",           name: "My Burberry Blush",               price: "650 TL", link: "https://www.fragrantica.com/perfume/Burberry/My-Burberry-Blush-45820.html" },
-      { no: 8,  brand: "Carolina Herrera",   name: "Good Girl",                       price: "650 TL", link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Good-Girl-39681.html" },
-      { no: 9,  brand: "Chanel",             name: "Bleu de Chanel (Erkek)",          price: "600 TL", link: "https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9099.html" },
-      { no: 10, brand: "Chanel",             name: "N°5 Eau de Parfum",               price: "600 TL", link: "https://www.fragrantica.com/perfume/Chanel/Chanel-No-5-Eau-de-Parfum-40069.html" },
-      { no: 11, brand: "Givenchy",           name: "L'Interdit Angélique Rouge",      price: "600 TL", link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Angelique-Rouge-102670.html" },
-      { no: 12, brand: "Diesel",             name: "Loverdose",                       price: "600 TL", link: "https://www.fragrantica.com/perfume/Diesel/Loverdose-12446.html" },
-      { no: 13, brand: "Dior",               name: "Hypnotic Poison",                 price: "600 TL", link: "https://www.fragrantica.com/perfume/Dior/Hypnotic-Poison-219.html" },
-      { no: 14, brand: "Dior",               name: "J'adore",                         price: "600 TL", link: "https://www.fragrantica.com/perfume/Dior/J-adore-210.html" },
-      { no: 15, brand: "Dior",               name: "Poison Girl",                     price: "600 TL", link: "https://www.fragrantica.com/perfume/Dior/Poison-Girl-35561.html" },
-      { no: 16, brand: "Givenchy",           name: "L'Interdit Angélique Rouge",      price: "600 TL", link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Eau-de-Parfum-Rouge-68603.html" },
-      { no: 17, brand: "Gucci",              name: "Flora Gorgeous Gardenia",         price: "700 TL", link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Gardenia-68578.html" },
-      { no: 18, brand: "Gucci",              name: "Flora Gorgeous Orchid",           price: "700 TL", link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Orchid-94979.html" },
-      { no: 19, brand: "Hugo Boss",          name: "The Scent Elixir (Erkek)",        price: "600 TL", link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-The-Scent-Elixir-For-Him-88879.html" },
-      { no: 20, brand: "Issey Miyake",       name: "Le Sel d'Issey (Erkek)",          price: "650 TL", link: "https://www.fragrantica.com/perfume/Issey-Miyake/Le-Sel-d-Issey-95642.html" },
-      { no: 21, brand: "Jean Paul Gaultier", name: "La Belle Paradise Garden",        price: "700 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/La-Belle-Paradise-Garden-88873.html" },
-      { no: 22, brand: "Jean Paul Gaultier", name: "Le Beau Paradise Garden (Erkek)", price: "700 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Beau-Paradise-Garden-88836.html" },
-      { no: 23, brand: "Jean Paul Gaultier", name: "Le Male Le Parfum (Erkek)",       price: "600 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Male-Le-Parfum-61856.html" },
-      { no: 24, brand: "Jean Paul Gaultier", name: "Scandal Pour Homme (Erkek)",      price: "600 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Scandal-Pour-Homme-68074.html" },
-      { no: 25, brand: "Jean Paul Gaultier", name: "Divine Elixir (Le Parfum)",       price: "650 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Gaultier-Divine-Elixir-106574.html" },
-      { no: 26, brand: "Jean Paul Gaultier", name: "Divine (Original)",               price: "650 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Gaultier-Divine-83889.html" },
-      { no: 27, brand: "By Kilian",          name: "Angels Share",                    price: "600 TL", link: "https://www.fragrantica.com/perfume/By-Kilian/Angels-Share-62615.html" },
-      { no: 28, brand: "Bond No. 9",         name: "Lafayette Street (Erkek)",        price: "600 TL", link: "https://www.fragrantica.com/perfume/Bond-No-9/Lafayette-Street-51742.html" },
-      { no: 29, brand: "Lancôme",            name: "La Vie Est Belle",                price: "600 TL", link: "https://www.fragrantica.com/perfume/Lancome/La-Vie-Est-Belle-14982.html" },
-      { no: 30, brand: "Lancôme",            name: "Idôle EDP",                       price: "750 TL", link: "https://www.fragrantica.com/perfume/Lancome/Idole-55795.html" },
-      { no: 32, brand: "Lattafa",            name: "Yara",                            price: "600 TL", link: "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Yara-76880.html" },
-      { no: 33, brand: "Louis Vuitton",      name: "L'Immensité (Erkek)",             price: "750 TL", link: "https://www.fragrantica.com/perfume/Louis-Vuitton/L-Immensite-49751.html" },
-      { no: 34, brand: "Matière Première",   name: "Vanilla Powder",                  price: "600 TL", link: "https://www.fragrantica.com/perfume/Matiere-Premiere/Vanilla-Powder-112581.html" },
-      { no: 35, brand: "SHL 777",            name: "God of Fire",                     price: "650 TL", link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/God-of-Fire-72381.html" },
-      { no: 36, brand: "SHL 777",            name: "Sand Dance",                      price: "650 TL", link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/Sand-Dance-72384.html" },
-      { no: 37, brand: "Tiziana Terenzi",    name: "Kirke Overdose",                  price: "700 TL", link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Kirke-Overdose-103499.html" },
-      { no: 38, brand: "Tiziana Terenzi",    name: "Kirke",                           price: "700 TL", link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Kirke-32172.html" },
-      { no: 39, brand: "Tiziana Terenzi",    name: "Cabiria",                         price: "600 TL", link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Cabiria-66817.html" },
-      { no: 40, brand: "Tom Ford",           name: "Lost Cherry",                     price: "700 TL", link: "https://www.fragrantica.com/perfume/Tom-Ford/Lost-Cherry-51411.html" },
-      { no: 41, brand: "Valentino",          name: "Donna Born in Roma Extradose",    price: "600 TL", link: "https://www.fragrantica.com/perfume/Valentino/Born-in-Roma-Extradose-Donna-101384.html" },
-      { no: 42, brand: "Valentino",          name: "Donna Born In Roma Intense",      price: "600 TL", link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Donna-Born-In-Roma-Intense-78739.html" },
-      { no: 44, brand: "Valentino",          name: "Uomo Born In Roma Intense (Erkek)",price: "600 TL", link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Uomo-Born-In-Roma-Intense-78740.html" },
-      { no: 45, brand: "Versace",            name: "Bright Crystal",                  price: "600 TL", link: "https://www.fragrantica.com/perfume/Versace/Bright-Crystal-632.html" },
-      { no: 46, brand: "Versace",            name: "Crystal Noir",                    price: "600 TL", link: "https://www.fragrantica.com/perfume/Versace/Crystal-Noir-631.html" },
-      { no: 47, brand: "Victoria's Secret",  name: "Bombshell",                       price: "550 TL", link: "https://www.fragrantica.com/perfume/Victoria-s-Secret/Bombshell-10190.html" },
-      { no: 48, brand: "Xerjoff",            name: "Alexandria II",                   price: "600 TL", link: "https://www.fragrantica.com/perfume/Xerjoff/Alexandria-II-17786.html" },
-      { no: 49, brand: "Xerjoff",            name: "Apollonia",                       price: "600 TL", link: "https://www.fragrantica.com/perfume/Xerjoff/Apollonia-55970.html" },
-      { no: 50, brand: "Xerjoff",            name: "Naxos",                           price: "700 TL", link: "https://www.fragrantica.com/perfume/Xerjoff/XJ-1861-Naxos-30529.html" },
-      { no: 51, brand: "YSL",                name: "Black Opium",                     price: "600 TL", link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Black-Opium-25324.html" },
-      { no: 52, brand: "YSL",                name: "Libre",                           price: "650 TL", link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Libre-56077.html" },
-      { no: 53, brand: "YSL",                name: "Supreme Bouquet",                 price: "650 TL", link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html" },
-      { no: 54, brand: "COCO",                name: "Mademoiselle Chanel",            price: "700 TL", link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-611.html" },
-      { no: 55, brand: "COCO",                name: "Mademoiselle Intense Chanel",    price: "750 TL", link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-Intense-48310.html" }
-
+      { brand: "Giorgio Armani",     name: "My Way",                          price: "650 TL", link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-62036.html" },
+      { brand: "Giorgio Armani",     name: "My Way Ylang",                    price: "650 TL", link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-Ylang-100877.html" },
+      { brand: "Giorgio Armani",     name: "Si",                              price: "650 TL", link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Si-18453.html" },
+      { brand: "Atkinsons",          name: "Shine Despite Everything",        price: "650 TL", link: "https://www.fragrantica.com/perfume/Atkinsons/Shine-Despite-Everything-97366.html" },
+      { brand: "BDK Parfums",        name: "Impadia",                         price: "650 TL", link: "https://www.fragrantica.com/perfume/BDK-Parfums/Impadia-104764.html" },
+      { brand: "Burberry",           name: "Goddess",                         price: "650 TL", link: "https://www.fragrantica.com/perfume/Burberry/Goddess-83483.html" },
+      { brand: "Burberry",           name: "My Burberry Blush",               price: "650 TL", link: "https://www.fragrantica.com/perfume/Burberry/My-Burberry-Blush-45820.html" },
+      { brand: "Carolina Herrera",   name: "Good Girl",                       price: "650 TL", link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Good-Girl-39681.html" },
+      { brand: "Chanel",             name: "Bleu de Chanel (Erkek)",          price: "600 TL", link: "https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9099.html" },
+      { brand: "Chanel",             name: "N°5 Eau de Parfum",               price: "600 TL", link: "https://www.fragrantica.com/perfume/Chanel/Chanel-No-5-Eau-de-Parfum-40069.html" },
+      { brand: "Givenchy",           name: "L'Interdit Angélique Rouge",      price: "600 TL", link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Angelique-Rouge-102670.html" },
+      { brand: "Diesel",             name: "Loverdose",                       price: "600 TL", link: "https://www.fragrantica.com/perfume/Diesel/Loverdose-12446.html" },
+      { brand: "Dior",               name: "Hypnotic Poison",                 price: "600 TL", link: "https://www.fragrantica.com/perfume/Dior/Hypnotic-Poison-219.html" },
+      { brand: "Dior",               name: "J'adore",                         price: "600 TL", link: "https://www.fragrantica.com/perfume/Dior/J-adore-210.html" },
+      { brand: "Dior",               name: "Poison Girl",                     price: "600 TL", link: "https://www.fragrantica.com/perfume/Dior/Poison-Girl-35561.html" },
+      { brand: "Givenchy",           name: "L'Interdit Eau de Parfum Rouge",  price: "600 TL", link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Eau-de-Parfum-Rouge-68603.html" },
+      { brand: "Gucci",              name: "Flora Gorgeous Gardenia",         price: "700 TL", link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Gardenia-68578.html" },
+      { brand: "Gucci",              name: "Flora Gorgeous Orchid",           price: "700 TL", link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Orchid-94979.html" },
+      { brand: "Hugo Boss",          name: "The Scent Elixir (Erkek)",        price: "600 TL", link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-The-Scent-Elixir-For-Him-88879.html" },
+      { brand: "Issey Miyake",       name: "Le Sel d'Issey (Erkek)",          price: "650 TL", link: "https://www.fragrantica.com/perfume/Issey-Miyake/Le-Sel-d-Issey-95642.html" },
+      { brand: "Jean Paul Gaultier", name: "La Belle Paradise Garden",        price: "700 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/La-Belle-Paradise-Garden-88873.html" },
+      { brand: "Jean Paul Gaultier", name: "Le Beau Paradise Garden (Erkek)", price: "700 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Beau-Paradise-Garden-88836.html" },
+      { brand: "Jean Paul Gaultier", name: "Le Male Le Parfum (Erkek)",       price: "600 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Male-Le-Parfum-61856.html" },
+      { brand: "Jean Paul Gaultier", name: "Scandal Pour Homme (Erkek)",      price: "600 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Scandal-Pour-Homme-68074.html" },
+      { brand: "Jean Paul Gaultier", name: "Divine Elixir (Le Parfum)",       price: "650 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Gaultier-Divine-Elixir-106574.html" },
+      { brand: "Jean Paul Gaultier", name: "Divine (Original)",               price: "650 TL", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Gaultier-Divine-83889.html" },
+      { brand: "By Kilian",          name: "Angels Share",                    price: "600 TL", link: "https://www.fragrantica.com/perfume/By-Kilian/Angels-Share-62615.html" },
+      { brand: "Bond No. 9",         name: "Lafayette Street (Erkek)",        price: "600 TL", link: "https://www.fragrantica.com/perfume/Bond-No-9/Lafayette-Street-51742.html" },
+      { brand: "Lancôme",            name: "La Vie Est Belle",                price: "600 TL", link: "https://www.fragrantica.com/perfume/Lancome/La-Vie-Est-Belle-14982.html" },
+      { brand: "Lancôme",            name: "Idôle EDP",                       price: "750 TL", link: "https://www.fragrantica.com/perfume/Lancome/Idole-55795.html" },
+      { brand: "Lattafa",            name: "Yara",                            price: "600 TL", link: "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Yara-76880.html" },
+      { brand: "Louis Vuitton",      name: "L'Immensité (Erkek)",             price: "750 TL", link: "https://www.fragrantica.com/perfume/Louis-Vuitton/L-Immensite-49751.html" },
+      { brand: "Matière Première",   name: "Vanilla Powder",                  price: "600 TL", link: "https://www.fragrantica.com/perfume/Matiere-Premiere/Vanilla-Powder-112581.html" },
+      { brand: "SHL 777",            name: "God of Fire",                     price: "650 TL", link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/God-of-Fire-72381.html" },
+      { brand: "SHL 777",            name: "Sand Dance",                      price: "650 TL", link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/Sand-Dance-72384.html" },
+      { brand: "Tiziana Terenzi",    name: "Kirke Overdose",                  price: "700 TL", link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Kirke-Overdose-103499.html" },
+      { brand: "Tiziana Terenzi",    name: "Kirke",                           price: "700 TL", link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Kirke-32172.html" },
+      { brand: "Tiziana Terenzi",    name: "Cabiria",                         price: "600 TL", link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Cabiria-66817.html" },
+      { brand: "Tom Ford",           name: "Lost Cherry",                     price: "700 TL", link: "https://www.fragrantica.com/perfume/Tom-Ford/Lost-Cherry-51411.html" },
+      { brand: "Valentino",          name: "Donna Born in Roma Extradose",    price: "600 TL", link: "https://www.fragrantica.com/perfume/Valentino/Born-in-Roma-Extradose-Donna-101384.html" },
+      { brand: "Valentino",          name: "Donna Born In Roma Intense",      price: "600 TL", link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Donna-Born-In-Roma-Intense-78739.html" },
+      { brand: "Valentino",          name: "Uomo Born In Roma Intense (Erkek)",price: "600 TL", link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Uomo-Born-In-Roma-Intense-78740.html" },
+      { brand: "Versace",            name: "Bright Crystal",                  price: "600 TL", link: "https://www.fragrantica.com/perfume/Versace/Bright-Crystal-632.html" },
+      { brand: "Versace",            name: "Crystal Noir",                    price: "600 TL", link: "https://www.fragrantica.com/perfume/Versace/Crystal-Noir-631.html" },
+      { brand: "Victoria's Secret",  name: "Bombshell",                       price: "550 TL", link: "https://www.fragrantica.com/perfume/Victoria-s-Secret/Bombshell-10190.html" },
+      { brand: "Xerjoff",            name: "Alexandria II",                   price: "600 TL", link: "https://www.fragrantica.com/perfume/Xerjoff/Alexandria-II-17786.html" },
+      { brand: "Xerjoff",            name: "Apollonia",                       price: "600 TL", link: "https://www.fragrantica.com/perfume/Xerjoff/Apollonia-55970.html" },
+      { brand: "Xerjoff",            name: "Naxos",                           price: "700 TL", link: "https://www.fragrantica.com/perfume/Xerjoff/XJ-1861-Naxos-30529.html" },
+      { brand: "YSL",                name: "Black Opium",                     price: "600 TL", link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Black-Opium-25324.html" },
+      { brand: "YSL",                name: "Libre",                           price: "650 TL", link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Libre-56077.html" },
+      { brand: "YSL",                name: "Supreme Bouquet",                 price: "650 TL", link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html" },
+      { brand: "COCO",               name: "Mademoiselle Chanel",             price: "700 TL", link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-611.html" },
+      { brand: "COCO",               name: "Mademoiselle Intense Chanel",     price: "750 TL", link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-Intense-48310.html" }
     ];
 
     var tbody   = document.getElementById('tableBody');
@@ -304,39 +280,20 @@
     var counter = document.getElementById('visibleCount');
     var noRes   = document.getElementById('noResults');
 
-    function makeLinkIcon() {
-      var ns  = 'http://www.w3.org/2000/svg';
-      var svg = document.createElementNS(ns, 'svg');
-      svg.setAttribute('width', '10'); svg.setAttribute('height', '10');
-      svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('fill', 'none');
-      svg.setAttribute('stroke', 'currentColor'); svg.setAttribute('stroke-width', '2.5');
-      var path = document.createElementNS(ns, 'path');
-      path.setAttribute('d', 'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6');
-      var poly = document.createElementNS(ns, 'polyline');
-      poly.setAttribute('points', '15 3 21 3 21 9');
-      var line = document.createElementNS(ns, 'line');
-      line.setAttribute('x1', '10'); line.setAttribute('y1', '14');
-      line.setAttribute('x2', '21'); line.setAttribute('y2', '3');
-      svg.appendChild(path); svg.appendChild(poly); svg.appendChild(line);
-      return svg;
-    }
-
     function render(list) {
       while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
       noRes.style.display = list.length ? 'none' : 'block';
 
-      list.forEach(function(p, i) {
+      list.forEach(function(p) {
         var img = imgUrl(p.link);
         var tr  = document.createElement('tr');
-
-        /* # */
-        var tdNo = document.createElement('td');
-        tdNo.textContent = p.no;
-        tr.appendChild(tdNo);
+        
+        if (p.link) {
+          tr.onclick = function() { window.open(p.link, '_blank', 'noopener'); };
+        }
 
         /* Resim */
         var tdImg  = document.createElement('td');
-        tdImg.className = 'img-cell';
         var wrap = document.createElement('div');
         wrap.className = 'perf-img-wrap';
         if (img) {
@@ -375,24 +332,6 @@
         tdPrice.className = 'price';
         tdPrice.textContent = p.price;
         tr.appendChild(tdPrice);
-
-        /* Link */
-        var tdLink = document.createElement('td');
-        if (p.link) {
-          var a = document.createElement('a');
-          a.className = 'link-btn';
-          a.href = p.link;
-          a.target = '_blank';
-          a.rel = 'noopener';
-          a.appendChild(makeLinkIcon());
-          a.appendChild(document.createTextNode('İncele'));
-          tdLink.appendChild(a);
-        } else {
-          var dash = document.createElement('span');
-          dash.className = 'no-link'; dash.textContent = '—';
-          tdLink.appendChild(dash);
-        }
-        tr.appendChild(tdLink);
 
         tbody.appendChild(tr);
       });
