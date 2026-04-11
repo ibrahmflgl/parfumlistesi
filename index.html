@@ -31,13 +31,6 @@
       padding: 48px 24px;
     }
     .header { text-align: center; margin-bottom: 52px; }
-    .header::before {
-      content: '';
-      display: block;
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, transparent, var(--gold));
-      margin: 0 auto 24px;
-    }
     .header h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 5vw, 3.2rem);
@@ -54,11 +47,30 @@
       background: linear-gradient(to right, transparent, var(--gold), transparent);
       margin: 20px auto 0;
     }
+    
     .controls {
       max-width: 980px;
-      margin: 0 auto 16px;
-      display: flex; gap: 12px; align-items: center;
+      margin: 0 auto 28px;
+      display: flex; gap: 16px; align-items: center;
     }
+    .filters {
+      display: flex; gap: 10px;
+    }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--border-light); color: var(--text); }
+    .filter-btn.active { border-color: var(--gold); color: var(--gold); }
+    
     .search-wrap { position: relative; flex: 1; }
     .search-wrap svg {
       position: absolute; left: 14px; top: 50%;
@@ -80,26 +92,6 @@
     #searchInput:focus { border-color: var(--gold); }
     .count-badge { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; white-space: nowrap; }
     .count-badge span { color: var(--gold); font-weight: 500; }
-
-    /* Yeni Filtre Butonları */
-    .filters {
-      max-width: 980px; margin: 0 auto 28px;
-      display: flex; gap: 10px;
-    }
-    .filter-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 8px 16px;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .filter-btn:hover { border-color: var(--border-light); color: var(--text); }
-    .filter-btn.active { border-color: var(--gold); color: var(--gold); }
 
     .table-wrap {
       max-width: 980px; margin: 0 auto;
@@ -151,15 +143,13 @@
       letter-spacing: 0.05em; line-height: 1.4;
       padding: 4px; text-align: center;
     }
-    .brand {
-      color: var(--muted); font-size: 0.68rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      display: block; margin-bottom: 2px;
-    }
+    
     .name {
       color: var(--text);
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem; font-weight: 400; letter-spacing: 0.02em;
+      font-size: 1.1rem; font-weight: 400; letter-spacing: 0.02em;
+      display: inline-block;
+      vertical-align: middle;
     }
     .gender-tag {
       font-family: 'Jost', sans-serif;
@@ -168,9 +158,10 @@
       border: 1px solid var(--border);
       padding: 2px 6px;
       border-radius: 2px;
-      margin-left: 8px;
+      margin-left: 10px;
       vertical-align: middle;
       text-transform: uppercase;
+      display: inline-block;
     }
     .price {
       color: var(--gold);
@@ -195,13 +186,17 @@
     @media(max-width:600px) {
       body { padding: 24px 10px; }
       .header h1 { font-size: 2rem; }
-      .filters { flex-wrap: wrap; }
-      .filter-btn { flex: 1; text-align: center; padding: 6px; font-size: 0.7rem; }
+      
+      .controls { flex-direction: column; align-items: stretch; gap: 12px; }
+      .search-wrap { order: 1; }
+      .filters { order: 2; flex-wrap: wrap; }
+      .filter-btn { flex: 1; text-align: center; padding: 8px 6px; font-size: 0.7rem; }
+      .count-badge { order: 3; text-align: center; }
+
       td { padding: 8px 6px; }
       th { padding: 10px 6px; font-size: 0.55rem; }
       .perf-img-wrap { width: 45px; height: 58px; }
       .name { font-size: 0.95rem; }
-      .brand { font-size: 0.65rem; }
       .price { font-size: 0.85rem; }
       td:last-child { padding-right: 12px; }
       thead th:last-child { padding-right: 12px; }
@@ -217,21 +212,20 @@
   </header>
 
   <div class="controls">
+    <div class="filters">
+      <button class="filter-btn active" data-gender="all">Tümü</button>
+      <button class="filter-btn" data-gender="Erkek">Erkek</button>
+      <button class="filter-btn" data-gender="Kadın">Kadın</button>
+      <button class="filter-btn" data-gender="Unisex">Unisex</button>
+    </div>
     <div class="search-wrap">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="11" cy="11" r="8" />
         <path d="m21 21-4.35-4.35" />
       </svg>
-      <input type="text" id="searchInput" placeholder="Marka veya parfüm adı ara…">
+      <input type="text" id="searchInput" placeholder="Parfüm adı ara…">
     </div>
     <div class="count-badge"><span id="visibleCount">53</span> ürün</div>
-  </div>
-
-  <div class="filters">
-    <button class="filter-btn active" data-gender="all">Tümü</button>
-    <button class="filter-btn" data-gender="Erkek">Erkek</button>
-    <button class="filter-btn" data-gender="Kadın">Kadın</button>
-    <button class="filter-btn" data-gender="Unisex">Unisex</button>
   </div>
 
   <div class="table-wrap">
@@ -239,7 +233,7 @@
       <thead>
         <tr>
           <th>Resim</th>
-          <th>Marka &amp; Parfüm</th>
+          <th>Parfüm Adı</th>
           <th>Fiyat 50ml</th>
         </tr>
       </thead>
@@ -259,57 +253,58 @@
       return m ? 'https://fimgs.net/mdimg/perfume/375x500.' + m[1] + '.jpg' : null;
     }
 
+    // Yeni format: sadece name, link ve gender var
     var perfumes = [
-      { brand: "Burberry",           name: "Goddess",                         link: "https://www.fragrantica.com/perfume/Burberry/Goddess-83483.html", gender: "Kadın" },
-      { brand: "Carolina Herrera",   name: "Good Girl",                       link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Good-Girl-39681.html", gender: "Kadın" },
-      { brand: "Carolina Herrera",   name: "212 Men",                         link: "https://www.fragrantica.com/perfume/Carolina-Herrera/212-Men-297.html", gender: "Erkek" },
-      { brand: "Chanel",             name: "Bleu de Chanel (Erkek)",          link: "https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9099.html", gender: "Erkek" },
-      { brand: "Chanel",             name: "Mademoiselle Chanel",             link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-611.html", gender: "Kadın" },
-      { brand: "Chanel",             name: "Mademoiselle Intense Chanel",     link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-Intense-48310.html", gender: "Kadın" },
-      { brand: "Narciso Rodriguez",  name: "Narciso Rodriguez for Her EDP",   link: "https://www.fragrantica.com/perfume/Narciso-Rodriguez/Narciso-Rodriguez-for-Her-Eau-de-Parfum-14319.html", gender: "Kadın" },
-      { brand: "Givenchy",           name: "L'Interdit Angélique Rouge",      link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Angelique-Rouge-102670.html", gender: "Kadın" },
-      { brand: "Diesel",             name: "Loverdose",                       link: "https://www.fragrantica.com/perfume/Diesel/Loverdose-12446.html", gender: "Kadın" },
-      { brand: "Dior",               name: "Hypnotic Poison",                 link: "https://www.fragrantica.com/perfume/Dior/Hypnotic-Poison-219.html", gender: "Kadın" },
-      { brand: "Dior",               name: "Poison Girl",                     link: "https://www.fragrantica.com/perfume/Dior/Poison-Girl-35561.html", gender: "Kadın" },
-      { brand: "Dior",               name: "Sauvage EDP",                     link: "https://www.fragrantica.com/perfume/Dior/Sauvage-Eau-de-Parfum-48100.html", gender: "Erkek" },
-      { brand: "Givenchy",           name: "L'Interdit Eau de Parfum Rouge",  link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Eau-de-Parfum-Rouge-68603.html", gender: "Kadın" },
-      { brand: "Gucci",              name: "Flora Gorgeous Gardenia",         link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Gardenia-68578.html", gender: "Kadın" },
-      { brand: "Gucci",              name: "Flora Gorgeous Orchid",           link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Orchid-94979.html", gender: "Kadın" },
-      { brand: "Hugo Boss",          name: "The Scent Elixir (Erkek)",        link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-The-Scent-Elixir-For-Him-88879.html", gender: "Erkek" },
-      { brand: "Hugo Boss",          name: "Boss Bottled (Erkek)",            link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-Bottled-383.html", gender: "Erkek" },
-      { brand: "Issey Miyake",       name: "Le Sel d'Issey (Erkek)",          link: "https://www.fragrantica.com/perfume/Issey-Miyake/Le-Sel-d-Issey-95642.html", gender: "Erkek" },
-      { brand: "Tiziana Terenzi",    name: "Cabiria",                         link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Cabiria-66817.html", gender: "Unisex" },
-      { brand: "Tom Ford",           name: "Lost Cherry",                     link: "https://www.fragrantica.com/perfume/Tom-Ford/Lost-Cherry-51411.html", gender: "Unisex" },
-      { brand: "Valentino",          name: "Donna Born in Roma Extradose",    link: "https://www.fragrantica.com/perfume/Valentino/Born-in-Roma-Extradose-Donna-101384.html", gender: "Kadın" },
-      { brand: "Valentino",          name: "Donna Born In Roma Intense",      link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Donna-Born-In-Roma-Intense-78739.html", gender: "Kadın" },
-      { brand: "Valentino",          name: "Uomo Born In Roma Intense (Erkek)",link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Uomo-Born-In-Roma-Intense-78740.html", gender: "Erkek" },
-      { brand: "Versace",            name: "Crystal Noir",                    link: "https://www.fragrantica.com/perfume/Versace/Crystal-Noir-631.html", gender: "Kadın" },
-      { brand: "Jean Paul Gaultier", name: "Le Beau Paradise Garden (Erkek)", link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Beau-Paradise-Garden-88836.html", gender: "Erkek" },
-      { brand: "Jean Paul Gaultier", name: "Le Male Le Parfum (Erkek)",       link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Male-Le-Parfum-61856.html", gender: "Erkek" },
-      { brand: "Jean Paul Gaultier", name: "Scandal Pour Homme (Erkek)",      link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Scandal-Pour-Homme-68074.html", gender: "Erkek" },
-      { brand: "Jean Paul Gaultier", name: "Ultra Male (Erkek)",              link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Ultra-Male-30947.html", gender: "Erkek" },
-      { brand: "Jean Paul Gaultier", name: "La Belle Paradise Garden",        link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/La-Belle-Paradise-Garden-88873.html", gender: "Kadın" },
-      { brand: "Giorgio Armani",     name: "My Way",                          link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-62036.html", gender: "Kadın" },
-      { brand: "Giorgio Armani",     name: "My Way Ylang",                    link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-Ylang-100877.html", gender: "Kadın" },
-      { brand: "Giorgio Armani",     name: "Si",                              link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Si-18453.html", gender: "Kadın" },
-      { brand: "Giorgio Armani",     name: "Code (Erkek)",                    link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Armani-Code-412.html", gender: "Erkek" },  
-      { brand: "Atkinsons",          name: "Shine Despite Everything",        link: "https://www.fragrantica.com/perfume/Atkinsons/Shine-Despite-Everything-97366.html", gender: "Unisex" },
-      { brand: "BDK Parfums",        name: "Impadia",                         link: "https://www.fragrantica.com/perfume/BDK-Parfums/Impadia-104764.html", gender: "Unisex" },
-      { brand: "By Kilian",          name: "Angels Share",                    link: "https://www.fragrantica.com/perfume/By-Kilian/Angels-Share-62615.html", gender: "Unisex" },
-      { brand: "Lancôme",            name: "La Vie Est Belle",                link: "https://www.fragrantica.com/perfume/Lancome/La-Vie-Est-Belle-14982.html", gender: "Kadın" },
-      { brand: "Lancôme",            name: "Idôle EDP",                       link: "https://www.fragrantica.com/perfume/Lancome/Idole-55795.html", gender: "Kadın" },
-      { brand: "Lattafa",            name: "Yara",                            link: "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Yara-76880.html", gender: "Kadın" },
-      { brand: "Louis Vuitton",      name: "L'Immensité (Erkek)",             link: "https://www.fragrantica.com/perfume/Louis-Vuitton/L-Immensite-49751.html", gender: "Erkek" },
-      { brand: "Rabanne",            name: "Invictus Victory Elixir (Erkek)", link: "https://www.fragrantica.com/perfume/Rabanne/Invictus-Victory-Elixir-78575.html", gender: "Erkek" },
-      { brand: "Matière Première",   name: "Vanilla Powder",                  link: "https://www.fragrantica.com/perfume/Matiere-Premiere/Vanilla-Powder-112581.html", gender: "Unisex" },
-      { brand: "SHL 777",            name: "God of Fire",                     link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/God-of-Fire-72381.html", gender: "Unisex" },
-      { brand: "SHL 777",            name: "Sand Dance",                      link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/Sand-Dance-72384.html", gender: "Unisex" },
-      { brand: "Victoria's Secret",  name: "Bombshell",                       link: "https://www.fragrantica.com/perfume/Victoria-s-Secret/Bombshell-10190.html", gender: "Kadın" },
-      { brand: "Xerjoff",            name: "Alexandria II",                   link: "https://www.fragrantica.com/perfume/Xerjoff/Alexandria-II-17786.html", gender: "Unisex" },
-      { brand: "Xerjoff",            name: "Apollonia",                       link: "https://www.fragrantica.com/perfume/Xerjoff/Apollonia-55970.html", gender: "Unisex" },
-      { brand: "Xerjoff",            name: "Naxos",                           link: "https://www.fragrantica.com/perfume/Xerjoff/XJ-1861-Naxos-30529.html", gender: "Unisex" },
-      { brand: "YSL",                name: "Libre",                           link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Libre-56077.html", gender: "Kadın" },
-      { brand: "YSL",                name: "Supreme Bouquet",                 link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html", gender: "Unisex" }
+      { name: "Burberry Goddess",                         link: "https://www.fragrantica.com/perfume/Burberry/Goddess-83483.html", gender: "Kadın" },
+      { name: "Carolina Herrera Good Girl",               link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Good-Girl-39681.html", gender: "Kadın" },
+      { name: "Carolina Herrera 212 Men",                 link: "https://www.fragrantica.com/perfume/Carolina-Herrera/212-Men-297.html", gender: "Erkek" },
+      { name: "Chanel Bleu de Chanel",                    link: "https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9099.html", gender: "Erkek" },
+      { name: "Chanel Coco Mademoiselle",                 link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-611.html", gender: "Kadın" },
+      { name: "Chanel Coco Mademoiselle Intense",         link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-Intense-48310.html", gender: "Kadın" },
+      { name: "Narciso Rodriguez for Her EDP",            link: "https://www.fragrantica.com/perfume/Narciso-Rodriguez/Narciso-Rodriguez-for-Her-Eau-de-Parfum-14319.html", gender: "Kadın" },
+      { name: "Givenchy L'Interdit Angélique Rouge",      link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Angelique-Rouge-102670.html", gender: "Kadın" },
+      { name: "Diesel Loverdose",                         link: "https://www.fragrantica.com/perfume/Diesel/Loverdose-12446.html", gender: "Kadın" },
+      { name: "Dior Hypnotic Poison",                     link: "https://www.fragrantica.com/perfume/Dior/Hypnotic-Poison-219.html", gender: "Kadın" },
+      { name: "Dior Poison Girl",                         link: "https://www.fragrantica.com/perfume/Dior/Poison-Girl-35561.html", gender: "Kadın" },
+      { name: "Dior Sauvage EDP",                         link: "https://www.fragrantica.com/perfume/Dior/Sauvage-Eau-de-Parfum-48100.html", gender: "Erkek" },
+      { name: "Givenchy L'Interdit Rouge",                link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Eau-de-Parfum-Rouge-68603.html", gender: "Kadın" },
+      { name: "Gucci Flora Gorgeous Gardenia",            link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Gardenia-68578.html", gender: "Kadın" },
+      { name: "Gucci Flora Gorgeous Orchid",              link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Orchid-94979.html", gender: "Kadın" },
+      { name: "Hugo Boss The Scent Elixir",               link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-The-Scent-Elixir-For-Him-88879.html", gender: "Erkek" },
+      { name: "Hugo Boss Boss Bottled",                   link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-Bottled-383.html", gender: "Erkek" },
+      { name: "Issey Miyake Le Sel d'Issey",              link: "https://www.fragrantica.com/perfume/Issey-Miyake/Le-Sel-d-Issey-95642.html", gender: "Erkek" },
+      { name: "Tiziana Terenzi Cabiria",                  link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Cabiria-66817.html", gender: "Unisex" },
+      { name: "Tom Ford Lost Cherry",                     link: "https://www.fragrantica.com/perfume/Tom-Ford/Lost-Cherry-51411.html", gender: "Unisex" },
+      { name: "Valentino Donna Born in Roma Extradose",   link: "https://www.fragrantica.com/perfume/Valentino/Born-in-Roma-Extradose-Donna-101384.html", gender: "Kadın" },
+      { name: "Valentino Donna Born In Roma Intense",     link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Donna-Born-In-Roma-Intense-78739.html", gender: "Kadın" },
+      { name: "Valentino Uomo Born In Roma Intense",      link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Uomo-Born-In-Roma-Intense-78740.html", gender: "Erkek" },
+      { name: "Versace Crystal Noir",                     link: "https://www.fragrantica.com/perfume/Versace/Crystal-Noir-631.html", gender: "Kadın" },
+      { name: "Jean Paul Gaultier Le Beau Paradise Garden",link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Beau-Paradise-Garden-88836.html", gender: "Erkek" },
+      { name: "Jean Paul Gaultier Le Male Le Parfum",     link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Male-Le-Parfum-61856.html", gender: "Erkek" },
+      { name: "Jean Paul Gaultier Scandal Pour Homme",    link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Scandal-Pour-Homme-68074.html", gender: "Erkek" },
+      { name: "Jean Paul Gaultier Ultra Male",            link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Ultra-Male-30947.html", gender: "Erkek" },
+      { name: "Jean Paul Gaultier La Belle Paradise Garden",link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/La-Belle-Paradise-Garden-88873.html", gender: "Kadın" },
+      { name: "Giorgio Armani My Way",                    link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-62036.html", gender: "Kadın" },
+      { name: "Giorgio Armani My Way Ylang",              link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-Ylang-100877.html", gender: "Kadın" },
+      { name: "Giorgio Armani Si",                        link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Si-18453.html", gender: "Kadın" },
+      { name: "Giorgio Armani Code",                      link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Armani-Code-412.html", gender: "Erkek" },  
+      { name: "Atkinsons Shine Despite Everything",       link: "https://www.fragrantica.com/perfume/Atkinsons/Shine-Despite-Everything-97366.html", gender: "Unisex" },
+      { name: "BDK Parfums Impadia",                      link: "https://www.fragrantica.com/perfume/BDK-Parfums/Impadia-104764.html", gender: "Unisex" },
+      { name: "By Kilian Angels Share",                   link: "https://www.fragrantica.com/perfume/By-Kilian/Angels-Share-62615.html", gender: "Unisex" },
+      { name: "Lancôme La Vie Est Belle",                 link: "https://www.fragrantica.com/perfume/Lancome/La-Vie-Est-Belle-14982.html", gender: "Kadın" },
+      { name: "Lancôme Idôle EDP",                        link: "https://www.fragrantica.com/perfume/Lancome/Idole-55795.html", gender: "Kadın" },
+      { name: "Lattafa Yara",                             link: "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Yara-76880.html", gender: "Kadın" },
+      { name: "Louis Vuitton L'Immensité",                link: "https://www.fragrantica.com/perfume/Louis-Vuitton/L-Immensite-49751.html", gender: "Erkek" },
+      { name: "Rabanne Invictus Victory Elixir",          link: "https://www.fragrantica.com/perfume/Rabanne/Invictus-Victory-Elixir-78575.html", gender: "Erkek" },
+      { name: "Matière Première Vanilla Powder",          link: "https://www.fragrantica.com/perfume/Matiere-Premiere/Vanilla-Powder-112581.html", gender: "Unisex" },
+      { name: "SHL 777 God of Fire",                      link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/God-of-Fire-72381.html", gender: "Unisex" },
+      { name: "SHL 777 Sand Dance",                       link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/Sand-Dance-72384.html", gender: "Unisex" },
+      { name: "Victoria's Secret Bombshell",              link: "https://www.fragrantica.com/perfume/Victoria-s-Secret/Bombshell-10190.html", gender: "Kadın" },
+      { name: "Xerjoff Alexandria II",                    link: "https://www.fragrantica.com/perfume/Xerjoff/Alexandria-II-17786.html", gender: "Unisex" },
+      { name: "Xerjoff Apollonia",                        link: "https://www.fragrantica.com/perfume/Xerjoff/Apollonia-55970.html", gender: "Unisex" },
+      { name: "Xerjoff Naxos",                            link: "https://www.fragrantica.com/perfume/Xerjoff/XJ-1861-Naxos-30529.html", gender: "Unisex" },
+      { name: "YSL Libre",                                link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Libre-56077.html", gender: "Kadın" },
+      { name: "YSL Supreme Bouquet",                      link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html", gender: "Unisex" }
     ];
 
     var tbody   = document.getElementById('tableBody');
@@ -333,7 +328,6 @@
           tr.onclick = function() { window.open(p.link, '_blank', 'noopener'); };
         }
 
-        /* Resim */
         var tdImg  = document.createElement('td');
         var wrap = document.createElement('div');
         wrap.className = 'perf-img-wrap';
@@ -358,23 +352,19 @@
         tdImg.appendChild(wrap);
         tr.appendChild(tdImg);
 
-        /* Marka & Ad & Cinsiyet Tag'i */
         var tdName   = document.createElement('td');
-        var brandSpan = document.createElement('span');
-        brandSpan.className = 'brand'; brandSpan.textContent = p.brand;
         var nameSpan  = document.createElement('span');
-        nameSpan.className = 'name'; nameSpan.textContent = p.name;
+        nameSpan.className = 'name'; 
+        nameSpan.textContent = p.name;
         
         var genderTag = document.createElement('span');
         genderTag.className = 'gender-tag';
         genderTag.textContent = p.gender;
 
-        nameSpan.appendChild(genderTag);
-        tdName.appendChild(brandSpan);
         tdName.appendChild(nameSpan);
+        tdName.appendChild(genderTag);
         tr.appendChild(tdName);
 
-        /* Fiyat */
         var tdPrice = document.createElement('td');
         tdPrice.className = 'price';
         tdPrice.textContent = p.price || '';
@@ -388,8 +378,7 @@
 
     function applyFilters() {
       var filtered = perfumes.filter(function(p) {
-        var matchSearch = p.brand.toLowerCase().indexOf(currentSearch) !== -1 || 
-                          p.name.toLowerCase().indexOf(currentSearch) !== -1;
+        var matchSearch = p.name.toLowerCase().indexOf(currentSearch) !== -1;
         var matchGender = currentGender === 'all' || p.gender === currentGender;
         return matchSearch && matchGender;
       });
