@@ -255,78 +255,122 @@
 
     // Yeni format: sadece name, link ve gender var
     var perfumes = [
-      { name: "Burberry Goddess",                         link: "https://www.fragrantica.com/perfume/Burberry/Goddess-83483.html", gender: "Kadın" },
-     { name: "Burberry Klasik",                                link: "https://www.fragrantica.com/perfume/Burberry/Burberry-Women-818.html", gender: "Kadın" },
-       { name: "Carolina Herrera Good Girl",               link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Good-Girl-39681.html", gender: "Kadın" },
-      { name: "Carolina Herrera Bad Boy PARFUM",                                link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Bad-Boy-Le-Parfum-65718.html", gender: "Erkek" },
-      
+      { name: "Burberry Goddess",                  link: "https://www.fragrantica.com/perfume/Burberry/Goddess-83483.html", gender: "Kadın" },
+      { name: "Burberry Klasik",                   link: "https://www.fragrantica.com/perfume/Burberry/Burberry-Women-818.html", gender: "Kadın" },
+
+      { name: "Chanel ALLURE HOMME SPORT",            link: "https://www.fragrantica.tr/perfumes/Chanel/Allure-Homme-Sport-607.html", gender: "Erkek" },
+      { name: "Chanel Bleu de Chanel",                link: "https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9099.html", gender: "Erkek" },
+      { name: "Chanel Coco Mademoiselle",             link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-611.html", gender: "Kadın" },
+      { name: "Chanel Coco Mademoiselle Intense",     link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-Intense-48310.html", gender: "Kadın" },
+
+     // { name: "Dior Hypnotic Poison",          link: "https://www.fragrantica.com/perfume/Dior/Hypnotic-Poison-219.html", gender: "Kadın" },
+      { name: "Dior Poison Girl",                link: "https://www.fragrantica.com/perfume/Dior/Poison-Girl-35561.html", gender: "Kadın" },
+      { name: "Dior Sauvage EDP",                link: "https://www.fragrantica.com/perfume/Dior/Sauvage-Eau-de-Parfum-48100.html", gender: "Erkek" },
+      { name: "Dior Sauvage ELIXIR",             link: "https://www.fragrantica.tr/perfumes/Dior/Sauvage-Elixir-68415.html", gender: "Erkek" },
+      { name: "Dior Homme Parfum 2014",          link: "https://www.fragrantica.com/perfume/Dior/Dior-Homme-Parfum-27417.html", gender: "Erkek" },
+
+      { name: "Prada - Paradoxe İntense",        link: "https://www.fragrantica.com/perfume/Prada/Prada-Paradoxe-Intense-83988.html", gender: "Kadın" },
+      { name: "Prada - Candy Prada",             link: "https://www.fragrantica.tr/perfumes/Prada/Prada-Candy-12426.html", gender: "Kadın" },
+  
       { name: "Carolina Herrera 212 Men",                 link: "https://www.fragrantica.com/perfume/Carolina-Herrera/212-Men-297.html", gender: "Erkek" },
-      { name: "Chanel Bleu de Chanel",                    link: "https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9099.html", gender: "Erkek" },
-      { name: "Chanel Coco Mademoiselle",                 link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-611.html", gender: "Kadın" },
-      { name: "Chanel Coco Mademoiselle Intense",         link: "https://www.fragrantica.com/perfume/Chanel/Coco-Mademoiselle-Intense-48310.html", gender: "Kadın" },
-      { name: "Narciso Rodriguez for Her EDP",            link: "https://www.fragrantica.com/perfume/Narciso-Rodriguez/Narciso-Rodriguez-for-Her-Eau-de-Parfum-14319.html", gender: "Kadın" },
-      { name: "Givenchy L'Interdit Angélique Rouge",      link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Angelique-Rouge-102670.html", gender: "Kadın" },
-      { name: "Diesel Loverdose",                         link: "https://www.fragrantica.com/perfume/Diesel/Loverdose-12446.html", gender: "Kadın" },
-      { name: "Dior Hypnotic Poison",                     link: "https://www.fragrantica.com/perfume/Dior/Hypnotic-Poison-219.html", gender: "Kadın" },
-      { name: "Dior Poison Girl",                         link: "https://www.fragrantica.com/perfume/Dior/Poison-Girl-35561.html", gender: "Kadın" },
-      { name: "Dior Sauvage EDP",                         link: "https://www.fragrantica.com/perfume/Dior/Sauvage-Eau-de-Parfum-48100.html", gender: "Erkek" },
-      { name: "Dior Homme Parfum 2014",                   link: "https://www.fragrantica.com/perfume/Dior/Dior-Homme-Parfum-27417.html", gender: "Erkek" },
-      
-      { name: "Brazilian - Sol de Janerio 62",                link: "https://www.fragrantica.com/perfume/Sol-de-Janeiro/Cheirosa-62-56062.html", gender: "Kadın" },
-      { name: "Gucci Flora Gorgeous Gardenia",            link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Gardenia-68578.html", gender: "Kadın" },
-      { name: "Gucci Flora Gorgeous Orchid",              link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Orchid-94979.html", gender: "Kadın" },
-      { name: "Hugo Boss The Scent Elixir",               link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-The-Scent-Elixir-For-Him-88879.html", gender: "Erkek" },
-      { name: "Hugo Boss Boss Bottled",                   link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-Bottled-383.html", gender: "Erkek" },
-      { name: "Hugo Boss Triumph Elixir ",                   link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-Bottled-Triumph-Elixir-91853.html", gender: "Erkek" },
-      { name: "Issey Miyake Le Sel d'Issey",              link: "https://www.fragrantica.com/perfume/Issey-Miyake/Le-Sel-d-Issey-95642.html", gender: "Erkek" },
-      { name: "Tiziana Terenzi Cabiria",                  link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Cabiria-66817.html", gender: "Unisex" },
+      { name: "Carolina Herrera Good Girl",               link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Good-Girl-39681.html", gender: "Kadın" },
+      //{ name: "Carolina Herrera Bad Boy PARFUM",        link: "https://www.fragrantica.com/perfume/Carolina-Herrera/Bad-Boy-Le-Parfum-65718.html", gender: "Erkek" },
+
+      { name: "Gucci Flora Gorgeous Gardenia",       link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Gardenia-68578.html", gender: "Kadın" },
+      { name: "Gucci Flora Gorgeous Orchid",         link: "https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Orchid-94979.html", gender: "Kadın" },
+     
+      { name: "Hugo Boss The Scent Elixir",          link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-The-Scent-Elixir-For-Him-88879.html", gender: "Erkek" },
+      { name: "Hugo Boss Boss Bottled",              link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-Bottled-383.html", gender: "Erkek" },
+      { name: "Hugo Boss Triumph Elixir ",           link: "https://www.fragrantica.com/perfume/Hugo-Boss/Boss-Bottled-Triumph-Elixir-91853.html", gender: "Erkek" },
+
+      { name: "Tiziana Terenzi - Kirke",          link: "https://www.fragrantica.tr/perfumes/Tiziana-Terenzi/Kirke-32172.html", gender: "Unisex" },
+      { name: "Tiziana Terenzi - Cabiria",        link: "https://www.fragrantica.com/perfume/Tiziana-Terenzi/Cabiria-66817.html", gender: "Unisex" },
+    
+      { name: "Tom Ford Lost Electric Cherry",            link: "https://www.fragrantica.tr/perfumes/Tom-Ford/Electric-Cherry-78583.html", gender: "Unisex" },
       { name: "Tom Ford Lost Cherry",                     link: "https://www.fragrantica.com/perfume/Tom-Ford/Lost-Cherry-51411.html", gender: "Unisex" },
+   
       { name: "Valentino Donna Born in Roma Extradose",   link: "https://www.fragrantica.com/perfume/Valentino/Born-in-Roma-Extradose-Donna-101384.html", gender: "Kadın" },
       { name: "Valentino Donna Born In Roma Intense",     link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Donna-Born-In-Roma-Intense-78739.html", gender: "Kadın" },
       { name: "Valentino Uomo Born In Roma Intense",      link: "https://www.fragrantica.com/perfume/Valentino/Valentino-Uomo-Born-In-Roma-Intense-78740.html", gender: "Erkek" },
-      { name: "Versace Crystal Noir",                     link: "https://www.fragrantica.com/perfume/Versace/Crystal-Noir-631.html", gender: "Kadın" },
-     { name: "Versace Bright Crystal",                     link: "https://www.fragrantica.com/perfume/Versace/Bright-Crystal-632.html", gender: "Kadın" },
-      { name: "Versace Pour Femme Dylan Purple",          link: "https://www.fragrantica.com/perfume/Versace/Versace-Pour-Femme-Dylan-Purple-76274.html", gender: "Kadın" },
-      { name: "Jean Paul Gaultier Le Beau Paradise Garden",link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Beau-Paradise-Garden-88836.html", gender: "Erkek" },
-      { name: "Jean Paul Gaultier Le Male Le Parfum",     link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Male-Le-Parfum-61856.html", gender: "Erkek" },
-      { name: "Jean Paul Gaultier Scandal Pour Homme",    link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Scandal-Pour-Homme-68074.html", gender: "Erkek" },
-      { name: "Jean Paul Gaultier Ultra Male",            link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Ultra-Male-30947.html", gender: "Erkek" },
-      { name: "Jean Paul Gaultier La Belle Paradise Garden",link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/La-Belle-Paradise-Garden-88873.html", gender: "Kadın" },
-      { name: "Giorgio Armani My Way",                    link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-62036.html", gender: "Kadın" },
-      { name: "Giorgio Armani My Way Ylang",              link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-Ylang-100877.html", gender: "Kadın" },
-      { name: "Giorgio Armani Si",                        link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Si-18453.html", gender: "Kadın" },
-      { name: "Giorgio Armani stronger with You intensly", link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Emporio-Armani-Stronger-With-You-Intensely-52802.html", gender: "Erkek" },
-      
-      { name: "Giorgio Armani Code",                      link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Armani-Code-for-Women-413.html", gender: "Kadın" },  
+
+      { name: "Versace Crystal Noir",                  link: "https://www.fragrantica.com/perfume/Versace/Crystal-Noir-631.html", gender: "Kadın" },
+      { name: "Versace Bright Crystal",                link: "https://www.fragrantica.com/perfume/Versace/Bright-Crystal-632.html", gender: "Kadın" },
+      { name: "Versace Pour Femme Dylan Purple",       link: "https://www.fragrantica.com/perfume/Versace/Versace-Pour-Femme-Dylan-Purple-76274.html", gender: "Kadın" },
+      { name: "Versace Eros EDP",                      link: "https://www.fragrantica.tr/perfumes/Versace/Eros-Eau-de-Parfum-62762.html", gender: "Erkek" },
+
+      { name: "JPG Le Beau Paradise Garden",   link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Beau-Paradise-Garden-88836.html", gender: "Erkek" },
+    //{ name: "JPG Le Male Le Parfum",         link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Le-Male-Le-Parfum-61856.html", gender: "Erkek" },
+    //{ name: "JPG Scandal Pour Homme",        link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Scandal-Pour-Homme-68074.html", gender: "Erkek" },
+      { name: "JPG Pour Homme Absolu",         link: "https://www.fragrantica.tr/perfumes/Jean-Paul-Gaultier/Scandal-Pour-Homme-Absolu-91053.html", gender: "Erkek" },
+      { name: "JPG Ultra Male",                link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Ultra-Male-30947.html", gender: "Erkek" },
+      { name: "JPG La Belle Paradise Garden",  link: "https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/La-Belle-Paradise-Garden-88873.html", gender: "Kadın" },
+     
+      { name: "Giorgio Armani My Way",                      link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-62036.html", gender: "Kadın" },
+      { name: "Giorgio Armani My Way Ylang",                link: "https://www.fragrantica.com/perfume/Giorgio-Armani/My-Way-Ylang-100877.html", gender: "Kadın" },
+      { name: "Giorgio Armani Si",                          link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Si-18453.html", gender: "Kadın" },
+      { name: "Giorgio Armani stronger with You intensly",  link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Emporio-Armani-Stronger-With-You-Intensely-52802.html", gender: "Erkek" },  
+      { name: "Giorgio Armani Code",                        link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Armani-Code-for-Women-413.html", gender: "Kadın" },      
+      { name: "Giorgio Armani Code",                        link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Armani-Code-412.html", gender: "Erkek" },  
+
+      { name: "Victoria's Secret - coconut passıon",      link: "https://www.fragrantica.tr/perfumes/Victoria-s-Secret/Coconut-Passion-7993.html", gender: "Kadın" },
+      { name: "Victoria's Secret - Velvet Petals",        link: "https://www.fragrantica.com/perfume/Victoria-s-Secret/Velvet-Petals-56837.html", gender: "Kadın" },     
+      { name: "Victoria's Secret - Bombshell",            link: "https://www.fragrantica.com/perfume/Victoria-s-Secret/Bombshell-10190.html", gender: "Kadın" },
     
-      { name: "Giorgio Armani Code",                      link: "https://www.fragrantica.com/perfume/Giorgio-Armani/Armani-Code-412.html", gender: "Erkek" },  
+      { name: "Xerjoff Alexandria II",             link: "https://www.fragrantica.com/perfume/Xerjoff/Alexandria-II-17786.html", gender: "Unisex" },
+      { name: "Xerjoff Apollonia",                 link: "https://www.fragrantica.com/perfume/Xerjoff/Apollonia-55970.html", gender: "Unisex" },
+      { name: "Xerjoff Naxos",                     link: "https://www.fragrantica.com/perfume/Xerjoff/XJ-1861-Naxos-30529.html", gender: "Unisex" },
+    
+      { name: "YSL Libre",                     link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Libre-56077.html", gender: "Kadın" },
+      { name: "YSL Supreme Bouquet",           link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html", gender: "Kadın" },
+
+      { name: "Rabanne Invictus Victory Elixir",      link: "https://www.fragrantica.com/perfume/Rabanne/Invictus-Victory-Elixir-78575.html", gender: "Erkek" },
+      { name: "Rabanne One million",                  link: "https://www.fragrantica.tr/perfumes/Rabanne/1-Million-3747.html", gender: "Erkek" },
+      { name: "Rabanne One million elixir",           link: "https://www.fragrantica.com/perfume/Rabanne/1-Million-Elixir-71708.html", gender: "Erkek" },
+
+      { name: "Lancôme La Vie Est Belle",        link: "https://www.fragrantica.com/perfume/Lancome/La-Vie-Est-Belle-14982.html", gender: "Kadın" },
+      { name: "Lancôme Idôle EDP",               link: "https://www.fragrantica.com/perfume/Lancome/Idole-55795.html", gender: "Kadın" },
+
+      { name: "Parfums de Marly Haltane",         link: "https://www.fragrantica.com/perfume/Parfums-de-Marly/Haltane-70776.html", gender: "Kadın" },
+      { name: "Parfums de Marly Pegasus",         link: "https://www.fragrantica.com/perfume/Parfums-de-Marly/Pegasus-16938.html", gender: "Erkek" },
+      { name: "Parfums de Marly Delina",          link: "https://www.fragrantica.tr/perfumes/Parfums-de-Marly/Delina-43871.html", gender: "Kadın" },
+
+      { name: "Creed - AVENTUS",                          link: "https://www.fragrantica.tr/perfumes/Creed/Aventus-9828.html", gender: "Erkek" },
+      { name: "Terre d'Hermès Hermès",                   link: "https://www.fragrantica.tr/perfumes/Hermes/Terre-d-Hermes-17.html", gender: "Erkek" },
+      { name: "Calvin Klein Euphoria Men Intense",       link: "https://www.fragrantica.tr/perfumes/Calvin-Klein/Euphoria-Men-Intense-1952.html", gender: "Erkek" },
+      { name: "Issey Miyake Le Sel d'Issey",              link: "https://www.fragrantica.com/perfume/Issey-Miyake/Le-Sel-d-Issey-95642.html", gender: "Erkek" },
+
+      { name: "Diesel Loverdose",             link: "https://www.fragrantica.com/perfume/Diesel/Loverdose-12446.html", gender: "Kadın" },
+      { name: "Diesel FUEL FOR LIFE",         link: "https://www.fragrantica.tr/perfumes/Diesel/Fuel-for-Life-Homme-1605.html", gender: "Erkek" },
+      { name: "SHL 777 God of Fire",          link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/God-of-Fire-72381.html", gender: "Unisex" },
+      { name: "SHL 777 Sand Dance",           link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/Sand-Dance-72384.html", gender: "Unisex" },
+
+      { name: "Matière Première Vanilla Powder",       link: "https://www.fragrantica.com/perfume/Matiere-Premiere/Vanilla-Powder-84933.html", gender: "Kadın" },
+      { name: "Lattafa Yara",                          link: "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Yara-76880.html", gender: "Kadın" },
+      { name: "LACOSTE POUR FEMME",                    link: "https://www.fragrantica.tr/perfumes/Lacoste-Fragrances/Lacoste-Pour-Femme-669.html", gender: "Kadın" },     
+      { name: "Mugler - Alien",                        link: "https://www.fragrantica.com/perfume/Mugler/Alien-707.html", gender: "Kadın" },
+      { name: "Chloé - Love Story",                    link: "https://www.fragrantica.tr/perfumes/Chloe/Love-Story-26227.html", gender: "Kadın" },
+      { name: "Marc Jacobs - DAİSY",                      link: "https://www.fragrantica.tr/perfumes/Marc-Jacobs/Daisy-1361.html", gender: "Kadın" },
+      { name: "Kayali vanilla|28",                        link: "https://www.fragrantica.com/perfume/Kayali-Fragrances/Vanilla-28-52616.html", gender: "Kadın" },
+      { name: "Bath & Body Works Wild Madagascar Vanilla ",   link: "https://www.fragrantica.com/perfume/Bath-Body-Works/Wild-Madagascar-Vanilla-28154.html", gender: "Kadın" },
+      { name: "Brazilian - Sol de Janerio 62",            link: "https://www.fragrantica.com/perfume/Sol-de-Janeiro/Cheirosa-62-56062.html", gender: "Kadın" },
+      { name: "Narciso Rodriguez for Her EDP",           link: "https://www.fragrantica.com/perfume/Narciso-Rodriguez/Narciso-Rodriguez-for-Her-Eau-de-Parfum-14319.html", gender: "Kadın" },
+      { name: "Givenchy L'Interdit Angélique Rouge",      link: "https://www.fragrantica.com/perfume/Givenchy/L-Interdit-Angelique-Rouge-102670.html", gender: "Kadın" },
+      { name: "SHISEIDO ZEN",                             link: "https://www.fragrantica.tr/perfumes/Shiseido/Zen-1499.html", gender: "Kadın" },
+      
+      { name: "Ex Nihilo - FLEUR NARCOTİQUE",             link: "https://www.fragrantica.tr/perfumes/Ex-Nihilo/Fleur-Narcotique-27571.html", gender: "Unisex" },
       { name: "Atkinsons Shine Despite Everything",       link: "https://www.fragrantica.com/perfume/Atkinsons/Shine-Despite-Everything-97366.html", gender: "Unisex" },
       { name: "BDK Parfums Impadia",                      link: "https://www.fragrantica.com/perfume/BDK-Parfums/Impadia-104764.html", gender: "Unisex" },
+      { name: "Memo - MARFA",                             link: "https://www.fragrantica.tr/perfumes/Memo-Paris/Marfa-37185.html", gender: "Unisex" },
       { name: "By Kilian Angels Share",                   link: "https://www.fragrantica.com/perfume/By-Kilian/Angels-Share-62615.html", gender: "Unisex" },
-      { name: "Lancôme La Vie Est Belle",                 link: "https://www.fragrantica.com/perfume/Lancome/La-Vie-Est-Belle-14982.html", gender: "Kadın" },
-      { name: "Lancôme Idôle EDP",                        link: "https://www.fragrantica.com/perfume/Lancome/Idole-55795.html", gender: "Kadın" },
-      { name: "Lattafa Yara",                             link: "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Yara-76880.html", gender: "Kadın" },
+      { name: "Orto Parisi - Megamare",                       link: "https://www.fragrantica.tr/perfumes/Orto-Parisi/Megamare-53471.html", gender: "Unisex" },
       { name: "Louis Vuitton L'Immensité",                link: "https://www.fragrantica.com/perfume/Louis-Vuitton/L-Immensite-49751.html", gender: "Erkek" },
-      { name: "Rabanne Invictus Victory Elixir",          link: "https://www.fragrantica.com/perfume/Rabanne/Invictus-Victory-Elixir-78575.html", gender: "Erkek" },
-      { name: "Matière Première Vanilla Powder",          link: "https://www.fragrantica.com/perfume/Matiere-Premiere/Vanilla-Powder-84933.html", gender: "Unisex" },
-      { name: "SHL 777 God of Fire",                      link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/God-of-Fire-72381.html", gender: "Unisex" },
-      { name: "SHL 777 Sand Dance",                       link: "https://www.fragrantica.com/perfume/Stephane-Humbert-Lucas-777/Sand-Dance-72384.html", gender: "Unisex" },
-      { name: "Victoria's Secret Bombshell",              link: "https://www.fragrantica.com/perfume/Victoria-s-Secret/Bombshell-10190.html", gender: "Kadın" },
-      { name: "Xerjoff Alexandria II",                    link: "https://www.fragrantica.com/perfume/Xerjoff/Alexandria-II-17786.html", gender: "Unisex" },
-      { name: "Xerjoff Apollonia",                        link: "https://www.fragrantica.com/perfume/Xerjoff/Apollonia-55970.html", gender: "Unisex" },
-      { name: "Xerjoff Naxos",                            link: "https://www.fragrantica.com/perfume/Xerjoff/XJ-1861-Naxos-30529.html", gender: "Unisex" },
-      { name: "YSL Libre",                                link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Libre-56077.html", gender: "Kadın" },
-      { name: "YSL Supreme Bouquet",                      link: "https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html", gender: "Unisex" },
-      { name: "Kayali vanilla|28",                        link: "https://www.fragrantica.com/perfume/Kayali-Fragrances/Vanilla-28-52616.html", gender: "Kadın" },
-      { name: "Paco Rabanne One million elixir",                                link: "https://www.fragrantica.com/perfume/Rabanne/1-Million-Elixir-71708.html", gender: "Kadın" },
-      { name: "Parfums de Marly Pegasus",                   link: "https://www.fragrantica.com/perfume/Parfums-de-Marly/Pegasus-16938.html", gender: "Erkek" },
+      { name: "ESSENTIAL PARFUMS BOIS IMPERIAL",          link: "https://www.fragrantica.tr/perfumes/Essential-Parfums/Bois-Imperial-64338.html", gender: "Unisex" },   
+      { name: "Azzaro - Most Wanted",                     link: "https://www.fragrantica.com/perfume/Azzaro/The-Most-Wanted-66826.html", gender: "Erkek" },
+     
       
-       { name: "Parfums de Marly Haltane",                                link: "https://www.fragrantica.com/perfume/Parfums-de-Marly/Haltane-70776.html", gender: "Kadın" },
-      { name: "Bath & Body Works Wild Madagascar Vanilla ",                                link: "https://www.fragrantica.com/perfume/Bath-Body-Works/Wild-Madagascar-Vanilla-28154.html", gender: "Kadın" },
-      { name: "Azzaro - Most Wanted",                                link: "https://www.fragrantica.com/perfume/Azzaro/The-Most-Wanted-66826.html", gender: "Erkek" },
-      { name: "Prada - Paradoxe İntense",                                link: "https://www.fragrantica.com/perfume/Prada/Prada-Paradoxe-Intense-83988.html", gender: "Kadın" },
-   
-    
+
+
+      
     ];
 
     var tbody   = document.getElementById('tableBody');
